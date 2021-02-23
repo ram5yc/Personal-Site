@@ -1,0 +1,11 @@
+﻿@model PersonalSiteRM.UI.MVC.Models.ContactViewModel
+
+<div class="container body-content">
+    @RenderBody()
+    <div id="contactForm">
+        @Html.Partial("ContactAjax", new PersonalSiteRM.UI.MVC.Models.ContactViewModel())
+    </div>
+    <div id="contactConfirm">
+        @Html.Partial("EmailConfirm", new PersonalSiteRM.UI.MVC.Models.ContactViewModel())
+    </div>
+</div>
