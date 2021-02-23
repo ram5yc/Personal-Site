@@ -8,17 +8,17 @@ namespace PersonalSiteRM.UI.MVC.Models
 {
     public class ContactViewModel
     {
-        [Required(ErrorMessage = "*Your name is required.")]
+        [Required(ErrorMessage = "* Tell me your name!")]
         public string Name { get; set; }
-        [Required(ErrorMessage ="*Your email is required.")]
-        [EmailAddress]
+
+        [Required(ErrorMessage ="* I need to know how I can reach you!")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        [Required(ErrorMessage = "*A subject is required.")]
+
         public string Subject { get; set; }
 
-
         [UIHint("MultilineText")]
-        [Required(ErrorMessage = "*Please write something for me.")]
+        [Required(ErrorMessage = "* Please write something for me.")]
         public string Message { get; set; }
     }
 }

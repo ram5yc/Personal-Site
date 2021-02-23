@@ -23,53 +23,46 @@ namespace PersonalSiteRM.UI.MVC.Controllers
 
             return View();
         }
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+        //public ActionResult Contact()
+        //{
+        //    ViewBag.Message = "Your contact page.";
 
-            return View();
-        }
+        //    return View();
+        //}
         //Post Contact Action 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public JsonResult ContactAjax(ContactViewModel cvm)
         {
-            if (ModelState.IsValid)
+            string body = $"You have received an email from {cvm.Name} with a subject of {cvm.Subject}. Please respond to {cvm.Email} with your response to the following message: <br/> {cvm.Message}";
+
+            MailMessage m = new MailMessage(
+                "webadmin@rachelmantei.com",
+                "webdevrach@gmail.com",
+                cvm.Subject,
+                body
+                );
+
+            m.IsBodyHtml = true;
+
+            m.Priority = MailPriority.High;
+
+            m.ReplyToList.Add(cvm.Email);
+
+            SmtpClient client = new SmtpClient("mail.rachelmantei.com");
+
+            client.Credentials = new NetworkCredential("webadmin@rachelmantei.com", "P@ssw0rd");
+
+            try
             {
-                string message = $"You have received an email from {cvm.Name} with a subject of {cvm.Subject}. Please respond to {cvm.Email} with your response to the following message: <br/> {cvm.Message}";
-
-                MailMessage m = new MailMessage(
-                    "webadmin@rachelmantei.com",
-                    "webdevrach@gmail.com",
-                    cvm.Subject,
-                    message
-                    );
-
-                m.IsBodyHtml = true;
-
-                m.Priority = MailPriority.High;
-
-                m.ReplyToList.Add(cvm.Email);
-
-                SmtpClient client = new SmtpClient("mail.rachelmantei.com");
-
-                client.Credentials = new NetworkCredential("webadmin@rachelmantei.com", "P@ssw0rd");
-
-                client.Port = 587;
-                try
-                {
-
-                    client.Send(m);
-                }
-                catch (Exception ex)
-                {
-                    ViewBag.CustomerMessage = $"We're sorry your request could not be sent at this time. Please try again later. <br/> Error Message:<br/> {ex.StackTrace}";
-                }
-            }//end if
+                client.Send(m);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = $"We're sorry your request could not be sent at this time. Please try again later. <br/> Error Message:<br/> {ex.StackTrace}";
+            }
             return Json(cvm);
-
-        }//end action
-
+        }//end if
 
         public ActionResult Resume()
         {
@@ -90,6 +83,5 @@ namespace PersonalSiteRM.UI.MVC.Controllers
 
             return View();
         }
-
-    }
+    }//end action
 }

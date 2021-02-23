@@ -1,11 +1,9 @@
 ﻿@model PersonalSiteRM.UI.MVC.Models.ContactViewModel
 
-<div class="container body-content">
-    @RenderBody()
-    <div id="contactForm">
-        @Html.Partial("ContactAjax", new PersonalSiteRM.UI.MVC.Models.ContactViewModel())
-    </div>
-    <div id="contactConfirm">
-        @Html.Partial("EmailConfirm", new PersonalSiteRM.UI.MVC.Models.ContactViewModel())
-    </div>
+<div>
+    @if (Model != null)
+    {
+        <h2>Thank your for your message @Model.Name.</h2>
+        <p>I will respond to your at @Model.Email as soon as possible!</p>
+    }
 </div>

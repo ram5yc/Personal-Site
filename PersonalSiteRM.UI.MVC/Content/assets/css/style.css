@@ -186,7 +186,7 @@ h1 {
         }
 
             .nav-menu a:hover i, .nav-menu .active > a i, .nav-menu li:hover > a i {
-                color: #149ddd;
+                color: #985105;
             }
 
 /* Mobile Navigation */
@@ -206,7 +206,7 @@ h1 {
 }
 
     .mobile-nav-toggle i {
-        color: #149ddd;
+        color: #985105;
     }
 
 .mobile-nav-active {
@@ -349,7 +349,7 @@ section {
     .about .content ul i {
         font-size: 20px;
         padding-right: 2px;
-        color: #149ddd;
+        color: #985105;
     }
 
 .about .content p:last-child {
@@ -514,7 +514,7 @@ section {
     margin: 0 auto 35px auto;
     list-style: none;
     text-align: center;
-    background: #fff;
+    background: rgba(236, 240, 241, 1);
     border-radius: 50px;
     padding: 2px 15px;
 }

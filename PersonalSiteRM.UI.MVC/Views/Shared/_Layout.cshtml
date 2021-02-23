@@ -55,9 +55,10 @@
                 <img src="~/Content/assets/img/photo of me.jpg" alt="" class="img-fluid rounded-circle">
                 <h1 class="text-light"><a href="index.html">Rachel Mantei</a></h1>
                 <div class="social-links mt-3 text-center">
-                    <a href="https://www.facebook.com/rachel.mantei/" class="facebook"><i class="bx bxl-facebook"></i></a>
-                    <a href="https://www.linkedin.com/in/rachel-mantei-0b0203b7" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-                    <a href="https://www.github.com/ram5yc" class="linkedin"><i class="bx bxl-github"></i></a>
+                    <span title="LinkedIn"><a href="https://www.linkedin.com/in/rachel-mantei-0b0203b7" class="linkedin" target="_blank"><i class="bx bxl-linkedin"></i></a></span>
+                    <span title="GitHub"><a href="https://www.github.com/ram5yc" class="linkedin" target="_blank"><i class="bx bxl-github"></i></a></span>
+                    <span title="Facebook"><a href="https://www.facebook.com/rachel.mantei/" class="facebook" target="_blank"><i class="bx bxl-facebook"></i></a></span>
+                    <span title="Email"><a href="#contact" class="email"><i class="bx bx-mail-send" target="_blank"></i></a></span>
                 </div>
             </div>
 
@@ -87,16 +88,15 @@
 
     <main id="main">
 
-
-
-
-
-
-        @RenderBody()
-
-
-
-
+        <div class="container body-content">
+            @RenderBody()
+            <div id="contactForm">
+                @Html.Partial("ContactAjax", new PersonalSiteRM.UI.MVC.Models.ContactViewModel())
+            </div>
+            <div id="contactConfirm">
+                @Html.Partial("EmailConfirm", new PersonalSiteRM.UI.MVC.Models.ContactViewModel())
+            </div>
+        </div>
 
     </main><!-- End #main -->
     <!-- ======= Footer ======= -->
@@ -137,18 +137,15 @@
     <script src="~/Content/assets/js/main.js"></script>
 
     <!--jQuery for email-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src=”https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js”></script>
 
     <!--jQuery for nav scroll-->
     <script src="//code.jquery.com/jquery.min.js"></script>
 
     @RenderSection("scripts", false);
 
-
-</body>
-
-</html>
-<script>
+    <!---FOR EMAIL FORM-->
+    <script>
     $("#ContactCreateForm").submit(function (e) {
         var formData = $(this).serializeArray();
         e.preventDefault();
@@ -158,9 +155,8 @@
             data: formData,
             datatype: 'json',
             success: function (data) {
-                $("contactForm").hide();
+                $("#contactForm").hide();
                 $("#contactConfirm").show();
-
                 $("#contactConfirm").html('<p>' +
                     data.Name + ', your message has been received: <br/>' +
                     data.Message +
@@ -170,9 +166,16 @@
                 );
             }
         });
-    });
-    ///////////FOR SCROLL FUNCTION IN JQUERY//////////////
-    $(document).ready(function () {
+        });
+
+    </script>
+    <!---FOR SCROLL FUNCTION IN JQUERY-->
+    <script>
+        $(document).ready(function () {
         $('#nav').onePageNav();
-    });
-</script>
+        });
+    </script>
+
+</body>
+
+</html>
