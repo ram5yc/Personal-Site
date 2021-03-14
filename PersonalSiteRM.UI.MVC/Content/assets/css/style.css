@@ -12,11 +12,14 @@ body {
     font-family: "Open Sans", sans-serif;
     color: #272829;
 }
+
 .btn {
     color: white;
     background-color: #994d0c;
     border-radius: 5px;
 }
+
+
 a {
     color: #994d0c;
 }
@@ -603,59 +606,6 @@ section {
         bottom: 0;
     }
 
-/*--------------------------------------------------------------
-# Services
---------------------------------------------------------------*/
-.services .icon-box {
-    margin-bottom: 20px;
-}
-
-.services .icon {
-    float: left;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 54px;
-    height: 54px;
-    background: #2d3666;
-    border-radius: 50%;
-    transition: 0.5s;
-    border: 1px solid #2d3666;
-}
-
-    .services .icon i {
-        color: #fff;
-        font-size: 24px;
-    }
-
-.services .icon-box:hover .icon {
-    background: #fff;
-}
-
-    .services .icon-box:hover .icon i {
-        color: #2d3666;
-    }
-
-.services .title {
-    margin-left: 80px;
-    font-weight: 700;
-    margin-bottom: 15px;
-    font-size: 18px;
-}
-
-    .services .title a {
-        color: #343a40;
-    }
-
-        .services .title a:hover {
-            color: #2d3666;
-        }
-
-.services .description {
-    margin-left: 80px;
-    line-height: 24px;
-    font-size: 14px;
-}
 
 /*--------------------------------------------------------------
 # classmates
@@ -664,9 +614,10 @@ section {
     margin-bottom: 1.8em;
 }
 
-.classmate:hover {
-    opacity: 0.6;
-}
+    .classmate:hover {
+        opacity: 0.6;
+    }
+
 .classmatePhoto {
     width: 15em;
     height: 15em;
@@ -1040,6 +991,50 @@ section {
     font-family: "Open Sans", sans-serif;
     text-decoration: none;
 }
-#contactConfirm{
-    display:none;
+
+#contactConfirm {
+    display: none;
+}
+
+/*FOR MODAL POP UP IN PORTFOLIOS*/
+div#speedbump {
+    display: none;
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #eeeeee;
+}
+
+#speedbump h4.modal-title {
+    text-align: center;
+    text-transform: uppercase;
+    color: #004795;
+    font-size: 2.5em;
+}
+
+.modal-body p {
+    text-align: center;
+    font-size: 1em;
+}
+
+button.btn-modal:hover {
+    cursor: pointer;
+}
+
+button.btn-modal.btn-continue {
+    background-color: #8bc63e;
+    border: 0px;
+    margin: 1% 0;
+}
+
+button.btn-modal.btn-close {
+    background-color: inherit;
+    border: 1px solid #030000;
+    color: #030000;
+    font-weight: 400;
+}
+
+.modal-header .close {
+    font-size: 3.5em;
 }

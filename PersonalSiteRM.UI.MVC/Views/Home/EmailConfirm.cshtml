@@ -1,9 +1,4 @@
-﻿@model PersonalSiteRM.UI.MVC.Models.ContactViewModel
-
-<div>
-    @if (Model != null)
-    {
-        <h2>Thank your for your message @Model.Name.</h2>
-        <p>I will respond to your at @Model.Email as soon as possible!</p>
-    }
+﻿<div>
+    <h2>Thank your for your message, @ViewBag.Name.</h2>
+    <p>I will respond to your at @ViewBag.Email as soon as possible!</p>
 </div>

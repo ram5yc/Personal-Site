@@ -30,6 +30,15 @@ namespace PersonalSiteRM.UI.MVC.Controllers
         //    return View();
         //}
         //Post Contact Action 
+
+        public PartialViewResult EmailConfirm (string name, string email)
+        {
+            ViewBag.Name = name;
+            ViewBag.Email = email;
+
+            return PartialView("EmailConfirm");
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public JsonResult ContactAjax(ContactViewModel cvm)

@@ -12,9 +12,14 @@
     <!-------------FONT AWESOME----------->
     <script src="https://kit.fontawesome.com/422bd8c87c.js" crossorigin="anonymous"></script>
 
-    <link href="~/Content/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!------------DEVICONS---------------->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.10.1/devicon.min.css">
+
+    <!-------------Bootstrap button tada-------->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 
+    <!------------jQuery/Ajax link-------------->
     <!-- Favicons -->
     <link href="~/Content/assets/img/favicon.ico" rel="icon" />
     <link href="~/Content/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -23,7 +28,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="~/Content/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
     <link href="~/Content/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link href="~/Content/assets/vendor/venobox/venobox.css" rel="stylesheet">
@@ -83,6 +88,7 @@
         <div class="hero-container" data-aos="fade-in">
             <h1>Rachel Mantei</h1>
             <p>I am a <span class="typed" data-typed-items="Developer, Designer, Freelancer"></span></p>
+
         </div>
     </section><!-- End Hero -->
 
@@ -90,12 +96,6 @@
 
         <div class="container body-content">
             @RenderBody()
-            <div id="contactForm">
-                @Html.Partial("ContactAjax", new PersonalSiteRM.UI.MVC.Models.ContactViewModel())
-            </div>
-            <div id="contactConfirm">
-                @Html.Partial("EmailConfirm", new PersonalSiteRM.UI.MVC.Models.ContactViewModel())
-            </div>
         </div>
 
     </main><!-- End #main -->
@@ -103,7 +103,7 @@
     <footer id="footer">
         <div class="container">
             <div class="copyright">
-                &copy; Copyright @DateTime.Now.Year<strong><span>iPortfolio</span></strong>
+                &copy; Copyright @DateTime.Now.Year<strong><span> iPortfolio</span></strong>
             </div>
             <div class="credits">
                 <!-- All the links in the footer should remain intact. -->
@@ -137,45 +137,79 @@
     <script src="~/Content/assets/js/main.js"></script>
 
     <!--jQuery for email-->
-    <script src=”https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js”></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
 
     <!--jQuery for nav scroll-->
     <script src="//code.jquery.com/jquery.min.js"></script>
 
-    @RenderSection("scripts", false);
+    <!--for modal down below-->
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 
-    <!---FOR EMAIL FORM-->
-    <script>
-    $("#ContactCreateForm").submit(function (e) {
-        var formData = $(this).serializeArray();
-        e.preventDefault();
-        $.ajax({
-            url: '@Url.Action("ContactAjax", "Home")',
-            type: 'POST',
-            data: formData,
-            datatype: 'json',
-            success: function (data) {
-                $("#contactForm").hide();
-                $("#contactConfirm").show();
-                $("#contactConfirm").html('<p>' +
-                    data.Name + ', your message has been received: <br/>' +
-                    data.Message +
-                    '<br/>', 'We will respond to' +
-                    data.Email +
-                    'as soon as we can. Thank you for your email!'
-                );
-            }
-        });
-        });
-
-    </script>
     <!---FOR SCROLL FUNCTION IN JQUERY-->
+    @*<script>
+            $(document).ready(function () {
+                $('#nav').onePageNav();
+            });
+        </script>*@
+
+    <!---FOR MODAL IN PORTFOLIO LINKS-->
+    @*// Open external links in a popup modal notice
+        <script>
+            $(window).on('load', function () {
+
+                $.expr[":"].external = function (a) {
+                    var linkhn = a.hostname.split('.').reverse();
+                    var linkHref = linkhn[1] + "." + linkhn[0];
+
+                    var domainhn = window.location.hostname.split('.').reverse();
+                    var domainHref = domainhn[1] + "." + domainhn[0];
+
+                    return !a.href.match(/^mailto\:/) && !a.href.match(/^tel\:/) && linkHref !== domainHref;
+                };
+
+                $("a:external").addClass("ext_link");
+
+                $(function () {
+
+                    $('a.ext_link').click(function () {
+                        // open a modal
+                        $('a:external').attr('data-toggle', 'modal');
+                        $('a:external').attr('data-target', '#speedbump');
+                        //go to link on modal close
+                        var url = $(this).attr('href');
+                        $('.btn-modal.btn-continue').click(function () {
+                            window.open(url);
+                            $('.btn-modal.btn-continue').off();
+                        });
+                        $('.btn-modal.btn-close').click(function () {
+                            $('#speedbump').modal('hide');
+                            $('.btn-modal.btn-close').off();
+                        });
+                    });
+
+                });
+            });
+        </script>*@
+
     <script>
-        $(document).ready(function () {
-        $('#nav').onePageNav();
-        });
+        let modal = document.querySelector(".modal");
+        let show = document.querySelector(".show");
+        let closeButton = document.querySelector(".close-button");
+
+
+        function toggleModal() {
+            modal.classList.toggle("show-modal");
+
+            function windowOnClick(event) {
+                if (event.target === modal) {
+                    toggleModal();
+                    show.addEventListener("click", toggleModal);
+                    closeButton.addEventListener("click", toggleModal);
+                    window.addEventListener("click", windowOnClick);
+
     </script>
 
+    @RenderSection("contactScripts", false);
 </body>
 
 </html>
