@@ -129,9 +129,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\assets\css\style.css" />
+    <Content Include="Content\assets\img\AbsoluteBank.jpg" />
     <Content Include="Content\assets\img\apple-touch-icon.png" />
     <Content Include="Content\assets\img\ATM.png" />
     <Content Include="Content\assets\img\BusinessSite.png" />
+    <Content Include="Content\assets\img\classmates\bryan.png" />
     <Content Include="Content\assets\img\classmates\d.muolo.jpg" />
     <Content Include="Content\assets\img\Console App.png" />
     <Content Include="Content\assets\img\CSharp.png" />
@@ -355,7 +357,7 @@
     <Content Include="_Archive\vendor\venobox\venobox.min.css" />
     <Content Include="_Archive\vendor\venobox\venobox.min.js" />
     <Content Include="_Archive\vendor\waypoints\jquery.waypoints.min.js" />
-    <Content Include="Content\assets\img\Rachel Mantei Resume IT.pdf" />
+    <Content Include="Content\assets\img\Rachel Mantei Resume IT.docx" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

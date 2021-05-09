@@ -8,10 +8,10 @@ namespace PersonalSiteRM.UI.MVC.Models
 {
     public class ContactViewModel
     {
-        [Required(ErrorMessage = "* Tell me your name!")]
+        [Required(ErrorMessage = "* Your name is required.")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage ="* I need to know how I can reach you!")]
+        [Required(ErrorMessage ="* Let me know how I can reach you.")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
